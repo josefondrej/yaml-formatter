@@ -40,7 +40,7 @@ def format_container(container: Dict, prefix: str = "") -> str:
     output += format_volume_mounts(container["volumeMounts"], 2 * prefix)
 
     output += prefix + f"{Fore.LIGHTCYAN_EX}Envirnomental variables: {Style.RESET_ALL}\n"
-    output += format_env_vars(container["env"], 2 * prefix)
+    output += format_env_vars(container.get("env", []), 2 * prefix)
 
     output += "\n"
     return output
@@ -65,10 +65,16 @@ def format_volume(volume: Dict, prefix: str = "") -> str:
 
 
 def format_deploy(deploy: Dict, prefix: str = "") -> str:
-    spec = deploy["spec"]
+
+    spec = deploy["spec"]       # for pod
+    try:                        # for deployment
+        spec = deploy["spec"]["template"]["spec"]
+    except:
+        pass
+
     containers = spec["containers"]
-    init_containers = spec["initContainers"]
-    volumes = spec["volumes"]
+    init_containers = spec.get("initContainers", [])
+    volumes = spec.get("volumes", [])
 
     output = ""
     for container in containers:

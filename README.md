@@ -3,14 +3,14 @@ Kubernetes .yaml Deployment Formatter
 
 Small utility that makes the kubernetes deployment yaml files more human readable. 
 
-Use like:
+- Install requirements using:
 
-`file.yaml | python yaml_format.py`
+    `python -m pip install -r requirements.txt`
 
-Personally I have an alias in `.bashrc`
+- Set up an alias in `.bashrc` like
 
-`alias yform='python /home/josef/dev/yaml_formatter/yaml_format.py`
+    `alias yform='python /home/josef/dev/yaml_formatter/yaml_format.py`
 
-and then I can do 
+- and then use
 
-`file.yaml | yform` 
+    `cat file.yaml | yform` 
