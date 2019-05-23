@@ -60,7 +60,7 @@ def format_volume(volume: Dict, prefix: str = "") -> str:
         volume_type = "configMap"
         name = volume["configMap"]["name"]
 
-    output += prefix + f" < {name} [{volume_type}]\n"
+    output += f" < {name} [{volume_type}]\n"
     return output
 
 
@@ -77,6 +77,7 @@ def format_deploy(deploy: Dict, prefix: str = "") -> str:
         output += format_container(container, prefix)
 
     for container in init_containers:
+        container_name = container["name"]
         output += prefix + f"{Fore.LIGHTYELLOW_EX}INIT CONTAINER{Style.RESET_ALL} [{container_name}]\n"
         output += format_container(container, prefix)
 
