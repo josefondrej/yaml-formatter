@@ -50,6 +50,8 @@ def format_volume(volume: Dict, prefix: str = "") -> str:
     volume_name = volume["name"]
 
     output = ""
+    name = "???"
+    volume_type = "unsupported volume type"
     output += prefix + f"{Fore.LIGHTMAGENTA_EX}{volume_name}{Style.RESET_ALL}"
 
     if volume.get("secret") is not None:
